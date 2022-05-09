@@ -54,13 +54,13 @@ public class CosmosDBSamplerTest {
     public void setup() {
         sampler = new CosmosDBSampler();
         sampler.setCosmosDBURI("testURI");
-        sampler.setCosmosKey("testKey");
+        sampler.setCosmosDBKey("testKey");
         sampler.setDatabaseName("testDatabase");
         sampler.setContainerID("testContainer");
-        sampler.setCosmosQuery("testCosmosQuery");
+        sampler.setCosmosDBQuery("testCosmosDBQuery");
         sampler.setQueryType("testQueryType");
         sampler.setRunID("testRunID");
-        CosmosDBTestUtils.setCosmosClient(mockClient, sampler.getCosmosDBURI(), sampler.getCosmosKey());
+        CosmosDBTestUtils.setCosmosClient(mockClient, sampler.getCosmosDBURI(), sampler.getCosmosDBKey());
         when(mockClient.getDatabase(sampler.getDatabaseName())).thenReturn(mockDatabase);
         when(mockDatabase.getContainer(sampler.getContainerID())).thenReturn(mockContainer);
     }
@@ -72,7 +72,7 @@ public class CosmosDBSamplerTest {
 
     @Test
     public void testCosmosError() {
-        when(mockContainer.queryItems(eq(sampler.getCosmosQuery()), any(CosmosQueryRequestOptions.class),
+        when(mockContainer.queryItems(eq(sampler.getCosmosDBQuery()), any(CosmosQueryRequestOptions.class),
                 eq(JsonNode.class)))
                 .thenThrow(CosmosException.class);
         SampleResult result = sampler.sample(new Entry());
@@ -109,14 +109,14 @@ public class CosmosDBSamplerTest {
         // Copy properties from the sampler set up in the setup method
         sampler.propertyIterator().forEachRemaining(testSampler::setProperty);
 
-        when(mockContainer.queryItems(eq(testSampler.getCosmosQuery()), any(CosmosQueryRequestOptions.class),
+        when(mockContainer.queryItems(eq(testSampler.getCosmosDBQuery()), any(CosmosQueryRequestOptions.class),
                 eq(JsonNode.class)))
                 .thenReturn(null); // returning null is ok because our test sampler doesn't read from the null
         // variable (see processResponseData above)
         SampleResult result = testSampler.sample(new Entry());
 
         String expectedResponse = "{\"RequestCharge\":\"2.43RUs\"," +
-                "\"query\":\"" + testSampler.getCosmosQuery() + "\"," +
+                "\"query\":\"" + testSampler.getCosmosDBQuery() + "\"," +
                 "\"OutputDocumentSize\":\"3820bytes\"," +
                 "\"QueryPreparationTimesQueryCompilationTime\":\"0.030000milliseconds\"," +
                 "\"PhysicalPlanBuildTime\":\"0.000000milliseconds\"," +
