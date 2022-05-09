@@ -7,12 +7,12 @@ We highly value contributions made from the community and we thank you for stopp
 ### The Basics
 - Create your branch from dev
 - Open your PR against the dev branch
-- Once you open your PR, it will automatically be assigned to the [correct review group](https://github.com/orgs/microsoft/teams/azure-cosmos-sampler-devs)
+- Once you open your PR, it will automatically be assigned to the [correct review group](https://github.com/orgs/microsoft/teams/azure-cosmos-db-sampler-contributors)
 - When we are ready to cut a release, we will merge dev into main.
 
 ### Issues
 - We do not require an issue for submitted PRs unless the fix is for a bug. If it's for a bug,
-  please [create a bug report](https://github.com/microsoft/azure-cosmos-sampler/issues/new?assignees=&labels=Bug&template=bug_report.md&title=)
+  please [create a bug report](https://github.com/microsoft/azure-cosmos-db-sampler/issues/new?assignees=&labels=Bug&template=bug_report.md&title=)
   and attach it to your PR.
 - If your PR solves an existing issue, please make sure you note this in your PR so that the work
   is attached to the issue. At the end of the PR template, you will see a place to attach your PR

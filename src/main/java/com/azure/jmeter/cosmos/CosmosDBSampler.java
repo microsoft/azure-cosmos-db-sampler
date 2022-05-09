@@ -51,14 +51,14 @@ public class CosmosDBSampler extends AbstractSampler implements TestStateListene
 
     private static final Logger logger = LogManager.getLogger(CosmosDBSampler.class);
 
-    private static final String COSMOS_DB_URI = "Cosmos.cosmosDBURI";
-    private static final String DATABASE_NAME = "Cosmos.databaseName";
-    private static final String COSMOS_KEY = "Cosmos.cosmosKey";
-    private static final String CONTAINER_ID = "Cosmos.containerID";
-    private static final String PARTITION_KEY_PATH = "Cosmos.partitionKeyPath";
-    private static final String COSMOS_QUERY = "Cosmos.cosmosQueries";
-    private static final String COSMOS_RUN_ID = "Cosmos.cosmosRunID";
-    private static final String COSMOS_QUERY_TYPE = "Cosmos.queryType";
+    private static final String COSMOS_DB_URI = "CosmosDB.cosmosDBURI";
+    private static final String DATABASE_NAME = "CosmosDB.databaseName";
+    private static final String COSMOS_KEY = "CosmosDB.cosmosDBKey";
+    private static final String CONTAINER_ID = "CosmosDB.containerID";
+    private static final String PARTITION_KEY_PATH = "CosmosDB.partitionKeyPath";
+    private static final String COSMOS_QUERY = "CosmosDB.cosmosDBQueries";
+    private static final String COSMOS_RUN_ID = "CosmosDB.cosmosDBRunID";
+    private static final String COSMOS_QUERY_TYPE = "CosmosDB.queryType";
 
     private static final Pattern BEFORE_COLON_PATTERN = Pattern.compile("[A-Za-z].*?:");
     private static final Pattern AFTER_COLON_PATTERN = Pattern.compile(":(.*)");
@@ -69,7 +69,7 @@ public class CosmosDBSampler extends AbstractSampler implements TestStateListene
     @Override
     public SampleResult sample(Entry entry) {
         SampleResult result = new SampleResult();
-        result.setSampleLabel("Cosmos Sampler");
+        result.setSampleLabel("Azure Cosmos DB Sampler");
         result.sampleStart();
 
         try {
@@ -121,15 +121,15 @@ public class CosmosDBSampler extends AbstractSampler implements TestStateListene
         return getPropertyAsString(DATABASE_NAME, "");
     }
 
-    public void setCosmosKey(String key) {
+    public void setCosmosDBKey(String key) {
         // Force re-acquisition of the container
-        if (!Objects.equals(key, getCosmosKey())) {
+        if (!Objects.equals(key, getCosmosDBKey())) {
             container = null;
         }
         setProperty(COSMOS_KEY, key);
     }
 
-    public String getCosmosKey() {
+    public String getCosmosDBKey() {
         return getPropertyAsString(COSMOS_KEY, "");
     }
 
@@ -153,11 +153,11 @@ public class CosmosDBSampler extends AbstractSampler implements TestStateListene
         return getPropertyAsString(PARTITION_KEY_PATH, "");
     }
 
-    public void setCosmosQuery(String query) {
+    public void setCosmosDBQuery(String query) {
         setProperty(COSMOS_QUERY, query);
     }
 
-    public String getCosmosQuery() {
+    public String getCosmosDBQuery() {
         return getPropertyAsString(COSMOS_QUERY, "");
     }
 
@@ -201,7 +201,7 @@ public class CosmosDBSampler extends AbstractSampler implements TestStateListene
     protected void connectCosmosClientIfNecessary() {
         if (container == null) {
             String uri = getCosmosDBURI();
-            String key = getCosmosKey();
+            String key = getCosmosDBKey();
 
             CosmosAsyncClient client = CosmosClientSingleton.clientConnect(uri, key);
             CosmosAsyncDatabase database = client.getDatabase(getDatabaseName());
@@ -219,7 +219,7 @@ public class CosmosDBSampler extends AbstractSampler implements TestStateListene
         try {
             long millis = System.currentTimeMillis();
 
-            pagedFluxResponse = container.queryItems(getCosmosQuery(), queryOptions, JsonNode.class);
+            pagedFluxResponse = container.queryItems(getCosmosDBQuery(), queryOptions, JsonNode.class);
 
             if (logger.isDebugEnabled()) {
                 long resultMillis = System.currentTimeMillis() - millis;
@@ -235,7 +235,7 @@ public class CosmosDBSampler extends AbstractSampler implements TestStateListene
 
     private JsonNode buildSampleResponseData(CosmosPagedFlux<JsonNode> response, Map<String, String> diagnosticsData) {
         ObjectMapper mapper = new ObjectMapper();
-        String sqlQuery = getCosmosQuery();
+        String sqlQuery = getCosmosDBQuery();
 
         try {
             // Add SQL Query to the response

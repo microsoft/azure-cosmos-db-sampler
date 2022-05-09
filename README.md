@@ -1,8 +1,8 @@
-# Azure Cosmos Sampler
+# Azure Cosmos DB Sampler
 
-The Azure Cosmos Sampler Plugin allows you to make queries to your Azure Cosmos DB instance from
+The Azure Cosmos DB Sampler Plugin allows you to make queries to your Azure Cosmos DB instance from
 [Apache JMeter](https://jmeter.apache.org/). After executing your queries, you will get back the
-CosmosDB metrics in your response body that you can view from the `View Results Tree` lisenter.
+Cosmos DB metrics in your response body that you can view from the `View Results Tree` lisenter.
 Furthermore, if you want to view the metrics in application insights, you can send these to your
 Azure Monitor instance with the [AppInsights Backend Listener](https://github.com/adrianmo/jmeter-backend-azure)
 plugin. More details below about how to get that piece up and running.
@@ -23,15 +23,15 @@ These instructions will get you a copy of the project up and running on your loc
 4. Install the [plugin manager](https://www.blazemeter.com/blog/how-install-jmeter-plugins-manager).
    If you used brew to install, the path will be located in `$(brew --prefix)/Cellar/jmeter/5.4.3/libexec/lib/ext`
 
-5. Add our CosmosDB Sampler to your external plugins folder.
+5. Add our Cosmos DB Sampler to your external plugins folder.
 
    - For `OSX`, you can run
      ```bash
-     cd /Your/path/AzureCosmosSampler
+     cd /Your/path/AzureCosmosDBSampler
      mvn package
      ```
      to build and package the JAR files. You'll want to copy the jar
-     `cosmossampler-1.0-SNAPSHOT-jar-with-dependencies.jar` to the same place you copied the
+     `azure-cosmos-db-sampler-1.0-SNAPSHOT-jar-with-dependencies.jar` to the same place you copied the
      plugin manager on step 4.
 
 6. **READ FURTHER ONLY IF YOU WANT TO USE THE TEMP FORK OF THE AppInsights Plugin TO VIEW METRICS IN APPINSIGHTS**:
@@ -45,7 +45,7 @@ These instructions will get you a copy of the project up and running on your loc
 ## Running your first test
 
 1. Create a thread group.
-2. Add the Azure Cosmos Sampler to the thread group.
+2. Add the Azure Cosmos DB Sampler to the thread group.
 3. Enter your query and configuration values.
 4. Add a `View Result Tree` listener so you can see your response and status.
 5. Press the green play button on the tool bar and view results in the `View Result Tree`.

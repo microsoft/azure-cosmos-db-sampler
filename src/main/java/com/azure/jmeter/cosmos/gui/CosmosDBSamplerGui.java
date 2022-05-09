@@ -34,10 +34,10 @@ public class CosmosDBSamplerGui extends AbstractSamplerGui {
 
     private final JTextField cosmosDBURI = new JTextField();
     private final JTextField databaseName = new JTextField();
-    private final JTextField cosmosKey = new JTextField();
+    private final JTextField cosmosDBKey = new JTextField();
     private final JTextField containerID = new JTextField();
     private final JTextField partitionKeyPath = new JTextField();
-    private final JTextArea cosmosQuery = new JTextArea();
+    private final JTextArea cosmosDBQuery = new JTextArea();
     private final JTextField runID = new JTextField();
     private final JTextField queryType = new JTextField();
 
@@ -45,35 +45,35 @@ public class CosmosDBSamplerGui extends AbstractSamplerGui {
         setLayout(new BorderLayout());
         setBorder(makeBorder());
         add(makeTitlePanel(), BorderLayout.NORTH);
-        add(createCosmosSamplerPanel(), BorderLayout.AFTER_LAST_LINE);
-        add(createCosmosQueryPanel(), BorderLayout.CENTER);
+        add(createCosmosDBSamplerPanel(), BorderLayout.AFTER_LAST_LINE);
+        add(createCosmosDBQueryPanel(), BorderLayout.CENTER);
     }
 
-    private JPanel createCosmosQueryPanel() {
-        JPanel cosmosQueryPanel = new JPanel(new BorderLayout(5, 0));
-        cosmosQueryPanel.setBorder(BorderFactory.createTitledBorder("CosmosDB Query"));
-        GroupLayout layout = new GroupLayout(cosmosQueryPanel);
-        cosmosQueryPanel.setLayout(layout);
+    private JPanel createCosmosDBQueryPanel() {
+        JPanel cosmosDBQueryPanel = new JPanel(new BorderLayout(5, 0));
+        cosmosDBQueryPanel.setBorder(BorderFactory.createTitledBorder("CosmosDB Query"));
+        GroupLayout layout = new GroupLayout(cosmosDBQueryPanel);
+        cosmosDBQueryPanel.setLayout(layout);
 
         JLabel queryLabel = new JLabel("Query:");
 
         layout.setHorizontalGroup(layout.createParallelGroup(Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup().addComponent(queryLabel)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(cosmosQuery)));
+                        .addComponent(cosmosDBQuery)));
 
         layout.setVerticalGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
                         .addComponent(queryLabel, GroupLayout.PREFERRED_SIZE,
                                 GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cosmosQuery, GroupLayout.DEFAULT_SIZE,
+                        .addComponent(cosmosDBQuery, GroupLayout.DEFAULT_SIZE,
                                 GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE)));
 
-        return cosmosQueryPanel;
+        return cosmosDBQueryPanel;
 
     }
 
-    private JPanel createCosmosSamplerPanel() {
+    private JPanel createCosmosDBSamplerPanel() {
         JPanel cosmosSamplerPanel = new JPanel();
         cosmosSamplerPanel.setBorder(BorderFactory.createTitledBorder("CosmosDB Configuration"));
         GroupLayout layout = new GroupLayout(cosmosSamplerPanel);
@@ -93,7 +93,7 @@ public class CosmosDBSamplerGui extends AbstractSamplerGui {
                 .addGroup(layout.createSequentialGroup().addComponent(cosmosDBURILabel)
                         .addPreferredGap(ComponentPlacement.RELATED).addComponent(cosmosDBURI))
                 .addGroup(layout.createSequentialGroup().addComponent(cosmosDBKeyLabel)
-                        .addPreferredGap(ComponentPlacement.RELATED).addComponent(cosmosKey))
+                        .addPreferredGap(ComponentPlacement.RELATED).addComponent(cosmosDBKey))
                 .addGroup(layout.createSequentialGroup().addComponent(containerIDLabel)
                         .addPreferredGap(ComponentPlacement.RELATED).addComponent(containerID))
                 .addGroup(layout.createSequentialGroup().addComponent(partitionKeyPathLabel)
@@ -118,7 +118,7 @@ public class CosmosDBSamplerGui extends AbstractSamplerGui {
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
                         .addComponent(cosmosDBKeyLabel, GroupLayout.PREFERRED_SIZE,
                                 GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cosmosKey, GroupLayout.PREFERRED_SIZE,
+                        .addComponent(cosmosDBKey, GroupLayout.PREFERRED_SIZE,
                                 GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
                         .addComponent(containerIDLabel, GroupLayout.PREFERRED_SIZE,
@@ -168,11 +168,11 @@ public class CosmosDBSamplerGui extends AbstractSamplerGui {
         if (element instanceof CosmosDBSampler) {
             CosmosDBSampler cosmosDBSampler = (CosmosDBSampler) element;
             cosmosDBSampler.setCosmosDBURI(cosmosDBURI.getText());
-            cosmosDBSampler.setCosmosKey(cosmosKey.getText());
+            cosmosDBSampler.setCosmosDBKey(cosmosDBKey.getText());
             cosmosDBSampler.setDatabaseName(databaseName.getText());
             cosmosDBSampler.setContainerID(containerID.getText());
             cosmosDBSampler.setPartitionKeyPath(partitionKeyPath.getText());
-            cosmosDBSampler.setCosmosQuery(cosmosQuery.getText());
+            cosmosDBSampler.setCosmosDBQuery(cosmosDBQuery.getText());
             cosmosDBSampler.setRunID(runID.getText());
             cosmosDBSampler.setQueryType(queryType.getText());
 
@@ -185,11 +185,11 @@ public class CosmosDBSamplerGui extends AbstractSamplerGui {
         if (element instanceof CosmosDBSampler) {
             CosmosDBSampler cosmosDBSampler = (CosmosDBSampler) element;
             cosmosDBURI.setText(cosmosDBSampler.getCosmosDBURI());
-            cosmosKey.setText(cosmosDBSampler.getCosmosKey());
+            cosmosDBKey.setText(cosmosDBSampler.getCosmosDBKey());
             databaseName.setText(cosmosDBSampler.getDatabaseName());
             containerID.setText(cosmosDBSampler.getContainerID());
             partitionKeyPath.setText(cosmosDBSampler.getPartitionKeyPath());
-            cosmosQuery.setText(cosmosDBSampler.getCosmosQuery());
+            cosmosDBQuery.setText(cosmosDBSampler.getCosmosDBQuery());
             runID.setText(cosmosDBSampler.getRunID());
             queryType.setText(cosmosDBSampler.getQueryType());
         }

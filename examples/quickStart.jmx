@@ -42,12 +42,12 @@
       </ThreadGroup>
       <hashTree>
         <com.azure.jmeter.cosmos.CosmosDBSampler guiclass="com.azure.jmeter.cosmos.gui.CosmosDBSamplerGui" testclass="com.azure.jmeter.cosmos.CosmosDBSampler" testname="Azure CosmosDB Sampler" enabled="true">
-          <stringProp name="Cosmos.cosmosDBURI"></stringProp>
-          <stringProp name="Cosmos.cosmosKey"></stringProp>
-          <stringProp name="Cosmos.databaseName"></stringProp>
-          <stringProp name="Cosmos.containerID"></stringProp>
-          <stringProp name="Cosmos.partitionKeyPath"></stringProp>
-          <stringProp name="Cosmos.cosmosQueries">Enter Query Here</stringProp>
+          <stringProp name="CosmosDB.cosmosDBURI"></stringProp>
+          <stringProp name="CosmosDB.cosmosDBKey"></stringProp>
+          <stringProp name="CosmosDB.databaseName"></stringProp>
+          <stringProp name="CosmosDB.containerID"></stringProp>
+          <stringProp name="CosmosDB.partitionKeyPath"></stringProp>
+          <stringProp name="CosmosDB.cosmosDBQueries">Enter Query Here</stringProp>
         </com.azure.jmeter.cosmos.CosmosDBSampler>
         <hashTree />
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
